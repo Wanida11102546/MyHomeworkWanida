@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS PROJECT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&family=Raleway:wght@500&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: white;
+        font-family: 'Chakra Petch', sans-serif;
+        font-family: 'Raleway', sans-serif;
+    }
+    
+    
+    .box {
+        padding: 20px;
+        text-align: center;
+        width: 50%;
+        margin: 50px auto;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        background-color: skyblue;
+    }
+    
+    h4 {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    
+    input {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    
+    button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    #result {
+        color: #fa0606;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    span {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    
+    @media (max-width: 768px) {
+        .box {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <header class="container">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <h1>Portfolio</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Add ms-auto class here -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">
+                                <h5>Home</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="project.html">
+                                <h5>JS Project </h5>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="api.html">
+                                <h5>api Project </h5>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="chart.html">
+                              <h5>Chart Project </h5>
+                          </a>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="box">
+            <h2>หาความยาวเส่นรอบวง</h2>
+            <input id="input" type="text" placeholder="รัศมี">
+            <button onclick="calculateAndDisplayCircumference()">คำนวน</button>
+            <h4>ความยาวเส้นรอบวงกลม:<span id="result"></span></h4>
+        </div>
+        <script>
+          function calculateCircleCircumference(radius) {
+              return 2 * Math.PI * radius;
+          }
+          function calculateAndDisplayCircumference() {
+              let inputElement = document.getElementById('input');
+              let resultElement = document.getElementById('result');
+        
+              let radius = parseFloat(inputElement.value);
+        
+              if (!isNaN(radius)) {
+                  let circumference = calculateCircleCircumference(radius);
+                  resultElement.textContent = circumference.toFixed(2);
+              } else {
+                  resultElement.textContent = 'กรุณากรอกค่าที่ถูกต้อง';
+              }
+          }
+        </script>
+        
+          <div class="box">
+          <h2>หาความยาวเส่นทแยงมุมของสี่เหลี่ยงผืนผ้า</h2>
+          <input id="base" type="text" placeholder="ป้อนความยาวของฐาน">
+          <input id="height" type="text" placeholder="ป้อนความสูง">
+          <h4>ผลลัพธ์:<span id="show"></span></h4>
+          <button onclick="calculateHypotenuse(document.getElementById('base').value, document.getElementById('height').value)">คำนวน</button>
+        </div>
+        <script>
+          function calculateHypotenuse(base, height) {
+              let result = Math.sqrt(base ** 2 + height ** 2);
+              document.getElementById('show').innerHTML = result.toFixed(3);
+          }
+        </script>
+        
+        <div class="box">
+          <h2>คำนวนคะแนนเกรด</h2>
+          <h1 id="number"></h1>
+          <button onclick="number()">คำนวน</button>
+        </div>
+          <script>
+            function number() {
+              let number = prompt('What is your number');
+              let grade;
+        
+              if (number > 80) {
+                grade = 'A';
+              } else if (number < 80 && number >= 70) {
+                grade = 'B';
+              } else if (number < 70 && number >= 60) {
+                grade = 'C';
+              } else if (number < 60 && number >= 50) {
+                grade = 'D';
+              } else {
+                grade = 'F';
+              }
+              document.getElementById('number').innerHTML = `คะแนนเกรดของคุณ : ${grade}`;
+            }
+          </script>
+        
+          <div class="box">
+          <label for="temperatureInput">ป้อนอุณหภูมิ (°C):</label>
+          <input type="number" id="temperatureInput" placeholder="ป้อนอุณหภูมิ" step="0.1">
+          <button onclick="แปลงอุณหภูมิ()">แปลง</button>
+          <p id="temperature"></p>
+          </div>
+          <script>
+            function แปลงอุณหภูมิ() {
+              const temperatureInput = document.getElementById('temperatureInput').value;
+              if (!isNaN(temperatureInput)) {
+                const temperatureFahrenheit = (temperatureInput * 9/5) + 32;
+                document.getElementById('temperature').innerHTML = `อุณหภูมิในหน่วยฟาเรนไฮต์: ${temperatureFahrenheit.toFixed(2)} °F`;
+              } else {
+                document.getElementById('temperature').innerHTML = 'กรุณาป้อนอุณหภูมิที่ถูกต้อง';
+              }
+            }
+          </script>
+          <div class="box">
+            <h1>วันและเวลา</h1>
+            <div id="dateTime"></div>
+          </div>
+            <script>
+              function displayDateTime() {
+                const thaiOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false, timeZoneName: 'short' };
+                const thaiDateTime = new Date().toLocaleString('th-TH', thaiOptions);
+                document.getElementById('dateTime').innerText = `วันและเวลาปัจจุบัน: ${thaiDateTime}`;
+              }
+              setInterval(displayDateTime, 1000);
+              displayDateTime();
+            </script>
+        <!-- End page content -->
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+</html>
